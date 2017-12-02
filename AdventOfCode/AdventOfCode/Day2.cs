@@ -23,13 +23,45 @@ namespace AdventOfCode
                 int firstNumber = Int32.Parse(inputMatrix[rowIdx][0]);
                 int lastNumber = Int32.Parse(inputMatrix[rowIdx][inputMatrix[rowIdx].Length - 1]);
 
-                sum += Math.Abs(firstNumber - lastNumber);
+                sum += lastNumber - firstNumber;
             }
 
             return sum;
         }
 
+        public static int Part2()
+        {
+            int sum = 0;
+            bool pairFound = false;
+            string[][] inputMatrix = getInputMatrix();
+            for (int rowIdx = 0; rowIdx < inputMatrix.Length; rowIdx++)
+            {
+                pairFound = false;
+                int num1 = 0;
+                int num2 = 0;
+                //sort row
+                int maxLen = inputMatrix[rowIdx].Max(x => x.Length);
+                inputMatrix[rowIdx] = inputMatrix[rowIdx].OrderBy(x => x.PadLeft(maxLen, '0')).ToArray();
 
+                for (int colIdx = 0; colIdx < inputMatrix[rowIdx].Length-1; colIdx++)
+                {
+                    for (int subColIdx = colIdx + 1; subColIdx < inputMatrix[rowIdx].Length; subColIdx++)
+                    {
+                        num1 = Int32.Parse(inputMatrix[rowIdx][colIdx]);
+                        num2 = Int32.Parse(inputMatrix[rowIdx][subColIdx]);
+                        if (num2 % num1 == 0)
+                        {
+                            pairFound = true;
+                            break;
+                        }
+                    }
+                    if (pairFound) break;
+                }
+                sum += num2 / num1;
+            }
+
+            return sum;
+        }
 
         private static string[][] getInputMatrix()
         {
