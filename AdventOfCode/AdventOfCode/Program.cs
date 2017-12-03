@@ -15,6 +15,9 @@ namespace AdventOfCode
             Console.WriteLine();
             Console.WriteLine(string.Format("Day 2 Part 1: {0}", Day2.Part1()));
             Console.WriteLine(string.Format("Day 2 Part 2: {0}", Day2.Part2()));
+            Console.WriteLine();
+            Console.WriteLine(string.Format("Day 3 Part 1: {0}", Day3.Part1()));
+            //Console.WriteLine(string.Format("Day 3 Part 2: {0}", Day3.Part2()));
 
             Console.ReadKey();
         }
